@@ -1,0 +1,7 @@
+{
+  "name": "cat-shelter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
