@@ -1,9 +1,49 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/cats"></ion-back-button>
+    </ion-buttons>
     <ion-title>Cat details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3" class="ion-no-padding">
+        <ion-img [src]="cat.img"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3" class="ion-text-left ion-padding ion-margin-vertical">
+        <p><b>Breed name:</b> {{ cat.breed_name }}</p>
+        <p><b>Breed origin:</b> {{ cat.breed_origin }}</p>
+        <p><b>Vocalisation:</b> {{ cat.vocalisation }}</p>
+        <p><b>Dog friendliness:</b> {{ cat.dog_friendly }}</p>
+        <p><b>Affection level:</b> {{ cat.affection_level }}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="cat.editable">
+      <ion-col size-sm="6" offset-sm="3" class="ion-text-center ion-margin-vertical">
+        <ion-button color="warning" margin (click)="editCat()">
+          Edit
+        </ion-button>
+        <ion-button color="danger" margin (click)="deleteCat()">
+          Delete
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3" class="ion-text-center ion-margin-vertical">
+        <ion-button>
+          <ion-icon slot="start" name="heart-outline"></ion-icon>
+          Mark as favourite
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
 
 </ion-content>

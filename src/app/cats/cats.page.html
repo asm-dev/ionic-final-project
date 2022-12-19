@@ -9,27 +9,17 @@
     <ion-row>
       <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
         <ion-card>
-          <ion-card-header>
-            <ion-card-title>Breed: {{ loadedCats[0].breed_name }}</ion-card-title>
-            <ion-card-subtitle
-              > Breed Origin: {{ loadedCats[0].breed_origin }} </ion-card-subtitle
-            >
-          </ion-card-header>
           <ion-img [src]="loadedCats[0].img"></ion-img>
           <ion-card-content>
-            <p>{{ loadedCats[0].breed_name }}</p>
+            <p>Breed: {{ loadedCats[0].breed_name }}</p>
+            <p>Breed Origin: {{ loadedCats[0].breed_origin }}</p>
           </ion-card-content>
           <div>
             <ion-button
               fill="clear"
               color="primary"
-              [routerLink]="[
-                '/',
-                'cats',
-                loadedCats[0].id
-              ]"
-            >
-              Details
+              [routerLink]="['/', 'cats', loadedCats[0].id]">
+              View details
             </ion-button>
           </div>
         </ion-card>
