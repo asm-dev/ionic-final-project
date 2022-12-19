@@ -9,17 +9,18 @@ const routes: Routes = [
     component: CatsPage
   },
   {
-    path: ':catId',
-    loadChildren: () => import('./cat-details/cat-details.module').then( m => m.CatDetailsPageModule)
-  },
-  {
-    path: 'edit-cat',
+    path: 'edit',
     loadChildren: () => import('./edit-cat/edit-cat.module').then( m => m.EditCatPageModule)
   },
   {
-    path: 'new-cat',
+    path: 'new',
     loadChildren: () => import('./new-cat/new-cat.module').then( m => m.NewCatPageModule)
-  }
+  },
+  {
+    path: ':catId',
+    loadChildren: () => import('./cat-details/cat-details.module').then( m => m.CatDetailsPageModule)
+  },
+
 ];
 
 @NgModule({

@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Cat } from '../shared/models/cat.model';
-// import { HttpClient } from '@angular/common/http';
-// import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { take, map, tap, switchMap } from 'rxjs/operators';
 
 interface CatData {
   id: string;
   img: string;
-  breed_name: string;
-  breed_origin: string;
+  breedName: string;
+  breedOrigin: string;
   vocalisation: number;
-  dog_friendly: number;
-  affection_level: number;
+  dogFriendly: number;
+  affectionLevel: number;
   editable: boolean;
 }
 
@@ -19,43 +20,107 @@ interface CatData {
 })
 
 export class CatsService {
-  private _cats: Cat[] = [
-    new Cat("asdas", "https://cdn2.thecatapi.com/images/TGuAku7fM.jpg", "Abyssinian", "Egypt", 1, 4, 5, false),
-    new Cat("bgjka", "https://cdn2.thecatapi.com/images/tv8tNeYaU.jpg", "Abyssinian", "Egypt", 1, 4, 5, false),
-    new Cat("asjkq", "https://cdn2.thecatapi.com/images/SwjDQ76Ix.jpg", "Balinese", "United States", 5, 5, 5, true),
-  ]
+  private _cats = new BehaviorSubject<Cat[]>([]);
+
+  get cats() {
+    return this._cats.asObservable();
+  }
 
   constructor(
-    // private http: HttpClient
+    private http: HttpClient
   ) { }
 
-  get cats(): Cat[] {
-    return [...this._cats];
+  fetchCats() {
+    return this.http
+      .get<{ [key: string]: CatData }>(
+        'https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats.json'
+      )
+      .pipe(
+        map(resData => {
+          const cats = [];
+          for (const key in resData) {
+            if (resData.hasOwnProperty(key)) {
+              cats.push(
+                new Cat(
+                  key,
+                  resData[key].img,
+                  resData[key].breedName,
+                  resData[key].breedOrigin,
+                  resData[key].vocalisation,
+                  resData[key].dogFriendly,
+                  resData[key].affectionLevel,
+                  resData[key].editable
+                )
+              );
+            }
+          }
+          return cats;
+          // return [];
+        }),
+        tap(cats => {
+          this._cats.next(cats);
+        })
+      );
   }
 
   getCat(id: string) {
-    return {...this._cats.find(cat => cat.id === id)};
+    return this.http
+      .get<CatData>(
+        `https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats/${id}.json`
+      )
+      .pipe(
+        map(catData => {
+          return new Cat(
+            id,
+            catData.img,
+            catData.breedName,
+            catData.breedOrigin,
+            catData.vocalisation,
+            catData.dogFriendly,
+            catData.affectionLevel,
+            catData.editable
+          );
+        })
+      );
   }
 
-  // getCat(id: string) {
-  //   return this.http
-  //     .get<CatData>(
-  //       `https://ionic-angular-44776-default-rtdb.firebaseio.com/offered-places/${id}.json`
-  //     )
-  //     .pipe(
-  //       map(catData => {
-  //         return new Cat(
-  //           id,
-  //           catData.title,
-  //           catData.description,
-  //           catData.imageUrl,
-  //           catData.price,
-  //           new Date(catData.availableFrom),
-  //           new Date(catData.availableTo),
-  //           catData.userId,
-  //           catData.location
-  //         );
-  //       })
-  //     );
-  // }
+  addCat(
+    img: string,
+    breedName: string,
+    breedOrigin: string,
+    vocalisation: number,
+    dogFriendly: number,
+    affectionLevel: number
+  ) {
+    let generatedId: string;
+    const newCat = new Cat(
+      Math.random().toString(), //id
+      img,
+      breedName,
+      breedOrigin,
+      vocalisation,
+      dogFriendly,
+      affectionLevel,
+      true, //editable bool
+    );
+    return this.http
+      .post<{ name: string }>(
+        'https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats.json',
+        {
+          ...newCat,
+          id: null
+        }
+      )
+      .pipe(
+        switchMap(resData => {
+          generatedId = resData.name;
+          return this.cats;
+        }),
+        take(1),
+        tap(cats => {
+          newCat.id = generatedId;
+          this._cats.next(cats.concat(newCat));
+        })
+      );
+  }
 }

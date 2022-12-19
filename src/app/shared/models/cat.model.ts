@@ -2,11 +2,11 @@ export class Cat {
     constructor (
         public id: string,
         public img: string,
-        public breed_name: string,
-        public breed_origin: string,
+        public breedName: string,
+        public breedOrigin: string,
         public vocalisation: number,
-        public dog_friendly: number,
-        public affection_level: number,
+        public dogFriendly: number,
+        public affectionLevel: number,
         public editable: boolean = true
     ){}
 }
