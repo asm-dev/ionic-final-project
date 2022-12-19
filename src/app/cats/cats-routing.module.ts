@@ -9,7 +9,7 @@ const routes: Routes = [
     component: CatsPage
   },
   {
-    path: 'cat-details',
+    path: ':catId',
     loadChildren: () => import('./cat-details/cat-details.module').then( m => m.CatDetailsPageModule)
   },
   {
