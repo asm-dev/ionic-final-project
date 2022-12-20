@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class CatDetailsPage implements OnInit {
   cat: Cat;
+  catId: string;
   isLoading = false;
   private catSub: Subscription;
 
@@ -70,7 +71,14 @@ export class CatDetailsPage implements OnInit {
   }
 
   editCat() {
-    console.log("Edit")
+    this.route.paramMap.subscribe(paramMap => {
+      if (!paramMap.has('catId')) {
+        this.navCtrl.navigateBack('/cats');
+        return;
+      }
+      this.catId = this.route.snapshot.params['catId']
+      this.router.navigate(['/cats/edit/', this.catId])
+    })
   }
 
   deleteCat() {

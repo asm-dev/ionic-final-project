@@ -9,12 +9,12 @@ const routes: Routes = [
     component: CatsPage
   },
   {
-    path: 'edit',
-    loadChildren: () => import('./edit-cat/edit-cat.module').then( m => m.EditCatPageModule)
-  },
-  {
     path: 'new',
     loadChildren: () => import('./new-cat/new-cat.module').then( m => m.NewCatPageModule)
+  },
+  {
+    path: 'edit/:catId',
+    loadChildren: () => import('./edit-cat/edit-cat.module').then( m => m.EditCatPageModule)
   },
   {
     path: ':catId',
