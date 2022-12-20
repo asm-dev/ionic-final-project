@@ -5,7 +5,7 @@ import { AlertController, LoadingController, NavController } from '@ionic/angula
 import { Subscription } from 'rxjs';
 import { Cat } from 'src/app/shared/models/cat.model';
 import { CustomValidators } from 'src/app/utils/custom-validators';
-import { CatsService } from '../cats.service';
+import { CatsService } from '../../cats.service';
 
 @Component({
   selector: 'app-edit-cat',
@@ -86,12 +86,32 @@ export class EditCatPage implements OnInit {
         )
     })
 
-    
   }
 
   editCat() {
-    
+    if(!this.editCatForm.valid){
+      return;
+    }
+    this.loadingCtrl.create({
+      message: 'Updating cat details...'
+    }).then( loadingEl => {
+      loadingEl.present();
+      this.catsService
+      .updateCat(
+        this.cat.id, 
+        this.editCatForm.value.img, 
+        this.editCatForm.value.breedName,
+        this.editCatForm.value.breedOrigin,
+        this.editCatForm.value.vocalisation,
+        this.editCatForm.value.dogFriendly,
+        this.editCatForm.value.affectionLevel
+      )
+      .subscribe(() => {
+        loadingEl.dismiss();
+        this.editCatForm.reset();
+        this.router.navigate(['/cats', this.catId])
+      })
+    })
   }
 
 }
-  

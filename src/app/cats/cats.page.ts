@@ -8,33 +8,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './cats.page.html',
   styleUrls: ['./cats.page.scss'],
 })
-export class CatsPage implements OnInit, OnDestroy {
-  loadedCats: Cat[];
-  private catsSub: Subscription;
-  isLoading = false;
-
-  constructor(private catsService: CatsService) {
+export class CatsPage implements OnInit {
+  
+  constructor() {
    
   }
 
   ngOnInit() {
-    // this.loadedCats = this.catsService.cats
-    this.catsSub = this.catsService.cats.subscribe(cats => {
-      this.loadedCats = cats;
-    });
-  }
-
-  ionViewWillEnter() {
-    this.isLoading = true;
-    this.catsService.fetchCats().subscribe(() => {
-      this.isLoading = false;
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.catsSub) {
-      this.catsSub.unsubscribe();
-    }
   }
 
 }

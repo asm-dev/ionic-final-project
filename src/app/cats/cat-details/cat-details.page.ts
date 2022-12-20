@@ -82,7 +82,15 @@ export class CatDetailsPage implements OnInit {
   }
 
   deleteCat() {
-    console.log("Delete")
+    this.route.paramMap.subscribe(paramMap => {
+    if (!paramMap.has('catId')) {
+      this.navCtrl.navigateBack('/cats');
+      return;
+    }
+    this.catId = this.route.snapshot.params['catId']
+    this.catsService.deleteCat(this.catId)
+    this.router.navigate(['/cats'])
+    })
   }
 
 }

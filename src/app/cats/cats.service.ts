@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Cat } from '../shared/models/cat.model';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { take, map, tap, switchMap } from 'rxjs/operators';
 
 interface CatData {
@@ -123,4 +123,54 @@ export class CatsService {
         })
       );
   }
+
+  updateCat(
+    catId: string, 
+    img: string,
+    breedName: string,
+    breedOrigin: string,
+    vocalisation: number,
+    dogFriendly: number,
+    affectionLevel: number,
+  ) {
+
+    let updatedCats: Cat[];
+    return this.cats.pipe(
+      take(1),
+      switchMap(cats => {
+        if (!cats || cats.length <= 0) {
+          return this.fetchCats();
+        } else {
+          return of(cats);
+        }
+      }),
+      switchMap(cats => {
+        const updatedCatIndex = cats.findIndex(c => c.id === catId);
+        updatedCats = [...cats];
+        const oldCat = updatedCats[updatedCatIndex];
+        updatedCats[updatedCatIndex] = new Cat(
+          oldCat.id,
+          img,
+          breedName,
+          breedOrigin,
+          vocalisation,
+          dogFriendly,
+          affectionLevel,
+          oldCat.editable,
+        );
+        return this.http.put(
+          `https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats/${catId}.json`,
+          { ...updatedCats[updatedCatIndex], id: null }
+        );
+      }),
+      tap(() => {
+        this._cats.next(updatedCats);
+      })
+    );
+  }
+
+  deleteCat(catId: string,) {
+      // return this.http.delete(`https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats/${catId}.json`)
+      console.log("Delete isn't implemented yet")
+  } 
 }

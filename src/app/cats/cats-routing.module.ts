@@ -5,22 +5,62 @@ import { CatsPage } from './cats.page';
 
 const routes: Routes = [
   {
-    path: '',
-    component: CatsPage
+    path: 'tabs',
+    component: CatsPage,
+    children: [
+      {
+        path: 'all-cats',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./cats-list/cats-list.module').then( m => m.CatsListPageModule),
+          },
+          {
+            path: ':catId',
+            loadChildren: () => import('./cat-details/cat-details.module').then( m => m.CatDetailsPageModule)
+          }
+        ]
+      }, 
+      {
+        path: 'your-cats',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./your-cats/your-cats.module').then( m => m.YourCatsPageModule),
+          },
+          {
+            path: 'create',
+            loadChildren: () => import('./your-cats/new-cat/new-cat.module').then( m => m.NewCatPageModule)
+          },
+          {
+            path: 'edit/:catId',
+            loadChildren: () => import('./your-cats/edit-cat/edit-cat.module').then( m => m.EditCatPageModule)
+          },
+          {
+            path: ':catId',
+            loadChildren: () => import('./cat-details/cat-details.module').then( m => m.CatDetailsPageModule)
+          }
+        ]
+      },
+      {
+        path: '',
+        redirectTo: '/tabs/cats',
+        pathMatch: 'full'
+      }
+    ]
   },
   {
     path: 'new',
-    loadChildren: () => import('./new-cat/new-cat.module').then( m => m.NewCatPageModule)
+    loadChildren: () => import('./your-cats/new-cat/new-cat.module').then( m => m.NewCatPageModule)
   },
   {
     path: 'edit/:catId',
-    loadChildren: () => import('./edit-cat/edit-cat.module').then( m => m.EditCatPageModule)
+    loadChildren: () => import('./your-cats/edit-cat/edit-cat.module').then( m => m.EditCatPageModule)
   },
   {
     path: ':catId',
     loadChildren: () => import('./cat-details/cat-details.module').then( m => m.CatDetailsPageModule)
   },
-
 ];
 
 @NgModule({

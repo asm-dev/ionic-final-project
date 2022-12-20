@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { CustomValidators } from 'src/app/utils/custom-validators';
-import { CatsService } from '../cats.service';
+import { CatsService } from '../../cats.service';
 
 @Component({
   selector: 'app-new-cat',
