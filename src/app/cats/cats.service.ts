@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Cat } from '../shared/models/cat.model';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { take, map, tap, switchMap } from 'rxjs/operators';
 
 interface CatData {
@@ -169,8 +169,20 @@ export class CatsService {
     );
   }
 
-  deleteCat(catId: string,) {
-      // return this.http.delete(`https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats/${catId}.json`)
-      console.log("Delete isn't implemented yet")
-  } 
+  deleteCat(catId: string) {
+    // console.log("I work" + catId)
+    //   return this.http.delete(`https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats/${catId}.json`)
+    return this.http.delete(`https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats/${catId}.json`).subscribe(
+      (val) => {
+          console.log("DELETE call successful value returned in body", 
+                      val);
+      },
+      response => {
+          console.log("DELETE call in error", response);
+      },
+      () => {
+          console.log("The DELETE observable is now completed.");
+      })
+      
+  }
 }

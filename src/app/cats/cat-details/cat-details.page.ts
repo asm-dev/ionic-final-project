@@ -89,7 +89,8 @@ export class CatDetailsPage implements OnInit {
     }
     this.catId = this.route.snapshot.params['catId']
     this.catsService.deleteCat(this.catId)
-    this.router.navigate(['/cats/tabs/all-cats'])
+    console.log("Deleted cat" + this.catId)
+    this.router.navigate(['/cats/tabs/your-cats'])
     })
   }
 
