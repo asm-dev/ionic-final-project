@@ -1,14 +1,17 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/cats"></ion-back-button>
+      <ion-back-button defaultHref="/cats/tabs/all-cats"></ion-back-button>
     </ion-buttons>
-    <ion-title>Cat details</ion-title>
+    <ion-title>{{ isLoading ? 'Loading...' : 'Cat details' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid class="ion-no-padding">
+  <div class="ion-text-center" *ngIf="isLoading">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+  <ion-grid class="ion-no-padding" *ngIf="!isLoading">
     <ion-row>
       <ion-col size-sm="6" offset-sm="3" class="ion-no-padding">
         <ion-img [src]="cat.img"></ion-img>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, LoadingController, NavController } from '@ionic/angular';
@@ -12,7 +12,7 @@ import { CatsService } from '../../cats.service';
   templateUrl: './edit-cat.page.html',
   styleUrls: ['./edit-cat.page.scss'],
 })
-export class EditCatPage implements OnInit {
+export class EditCatPage implements OnInit, OnDestroy {
   editCatForm: FormGroup;
   imgInput: FormControl;
   breedInput: FormControl;
@@ -38,7 +38,7 @@ export class EditCatPage implements OnInit {
 
     this.route.paramMap.subscribe(paramMap => {
       if (!paramMap.has('catId')) {
-        this.navCtrl.navigateBack('/cats');
+        this.navCtrl.navigateBack('/cats/tabs/your-cats');
         return;
       }
       this.catId = paramMap.get("catId");
@@ -74,7 +74,7 @@ export class EditCatPage implements OnInit {
                   {
                     text: 'Okay',
                     handler: () => {
-                      this.router.navigate(['/cats']);
+                      this.router.navigate(['/cats/tabs/all-cats']);
                     }
                   }
                 ]
@@ -109,9 +109,16 @@ export class EditCatPage implements OnInit {
       .subscribe(() => {
         loadingEl.dismiss();
         this.editCatForm.reset();
-        this.router.navigate(['/cats', this.catId])
+        
+        return this.router.navigate(['/cats/tabs/your-cats', this.catId ])
       })
     })
+  }
+
+  ngOnDestroy() {
+    if (this.catSub) {
+      this.catSub.unsubscribe();
+    }
   }
 
 }

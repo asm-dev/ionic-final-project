@@ -49,7 +49,7 @@ export class NewCatPage implements OnInit {
     }
     this.loadingCtrl
       .create({
-        message: 'Creating place...'
+        message: 'Creating cat...'
       })
       .then(loadingEl => {
         loadingEl.present();
@@ -65,7 +65,7 @@ export class NewCatPage implements OnInit {
           .subscribe(() => {
             loadingEl.dismiss();
             this.newCatForm.reset();
-            this.router.navigate(['/cats']);
+            this.router.navigate(['/cats/tabs/your-cats']);
           });
       });
   }

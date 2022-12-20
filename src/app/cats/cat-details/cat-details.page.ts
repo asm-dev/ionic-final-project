@@ -77,19 +77,19 @@ export class CatDetailsPage implements OnInit {
         return;
       }
       this.catId = this.route.snapshot.params['catId']
-      this.router.navigate(['/cats/edit/', this.catId])
+      this.router.navigate(['/cats/tabs/your-cats/edit', this.catId])
     })
   }
 
   deleteCat() {
     this.route.paramMap.subscribe(paramMap => {
     if (!paramMap.has('catId')) {
-      this.navCtrl.navigateBack('/cats');
+      this.navCtrl.navigateBack('/cats/tabs/all-cats');
       return;
     }
     this.catId = this.route.snapshot.params['catId']
     this.catsService.deleteCat(this.catId)
-    this.router.navigate(['/cats'])
+    this.router.navigate(['/cats/tabs/all-cats'])
     })
   }
 

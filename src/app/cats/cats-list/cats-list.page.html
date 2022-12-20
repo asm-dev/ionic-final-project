@@ -4,11 +4,6 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>All cats</ion-title>
-    <ion-buttons slot="primary">
-      <ion-button routerLink="/cats/new">
-        <ion-icon name="add" slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -35,7 +30,7 @@
             <ion-button
               fill="clear"
               color="primary"
-              [routerLink]="['/', 'cats', loadedCats[0].id]">
+              [routerLink]="['/', 'cats', 'tabs', 'all-cats', loadedCats[0].id]">
               View details
             </ion-button>
           </div>
@@ -47,7 +42,7 @@
         <ion-list>
           <ion-item
             *ngFor="let cat of loadedCats.slice(1)"
-            [routerLink]="['/', 'cats', cat.id]"
+            [routerLink]="['/', 'cats', 'tabs', 'all-cats', cat.id]"
             detail
           >
             <ion-thumbnail slot="start">
