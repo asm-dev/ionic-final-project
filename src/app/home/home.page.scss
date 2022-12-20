@@ -1,0 +1,25 @@
+.hero-meow {
+    font-size: 40px;
+    font-weight: bold;
+    animation-name: spacing;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes spacing {
+    0% {
+      letter-spacing: normal;
+    }
+  
+    50% {
+      letter-spacing: 0.5rem;
+    }
+  
+    100% {
+      letter-spacing: normal;
+    }
+  }
+
+.toolbar-logo {
+    width: 30px;
+}

@@ -74,6 +74,17 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** Custom **/
+  --ion-background-color: rgb(250, 250, 250);
+  ion-toolbar, ion-card {
+    --background: white;
+  }
+  ion-tab-bar {
+    --background: rgb(240, 240, 240);
+    --color: var(--ion-color-medium-shade)
+  }
+  
 }
 
 @media (prefers-color-scheme: dark) {
