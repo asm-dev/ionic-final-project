@@ -12,4 +12,9 @@ export class HomePage implements OnInit {
   ngOnInit() {
   }
 
+  miau():void {
+    let audio = new Audio('../../assets/audio/cat-meow.mp3')
+    audio.play()
+    console.log("meow")
+  }
 }

@@ -17,4 +17,9 @@ export class CatsPage implements OnInit {
   ngOnInit() {
   }
 
+  miau():void {
+    let audio = new Audio('../../assets/audio/cat-meow.mp3')
+    audio.play()
+    console.log("meow")
+  }
 }
