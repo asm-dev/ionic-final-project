@@ -30,27 +30,15 @@
         <p><b>Affection level:</b> {{ cat.affectionLevel }}</p>
       </ion-col>
     </ion-row>
-
-    <ion-row *ngIf="cat.editable">
-      <ion-col size-sm="6" offset-sm="3" class="ion-text-center ion-margin-vertical">
-        <ion-button color="warning" margin (click)="editCat()">
+    <ion-row *ngIf="cat.editable" class="ion-margin-bottom ion-padding-bottom">
+      <ion-col size-sm="6" offset-sm="3" class="ion-text-center ion-margin-bottom ion-padding-bottom">
+        <ion-button color="warning" (click)="editCat()">
           Edit
         </ion-button>
-        <ion-button color="danger" margin (click)="deleteCat()">
+        <ion-button color="danger" (click)="deleteCat()">
           Delete
         </ion-button>
       </ion-col>
     </ion-row>
-
-    <ion-row class="ion-padding-bottom ion-margin-bottom">
-      <ion-col size-sm="6" offset-sm="3" class="ion-text-center ion-margin-vertical">
-        <ion-button color="success" fill="outline">
-          <ion-icon slot="start" name="heart-outline"></ion-icon>
-          Mark as favourite
-        </ion-button>
-      </ion-col>
-    </ion-row>
-    
   </ion-grid>
-
 </ion-content>

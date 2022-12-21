@@ -15,10 +15,6 @@ const routes: Routes = [
     path: 'cats',
     loadChildren: () => import('./cats/cats.module').then( m => m.CatsPageModule)
   },
-  {
-    path: 'favourites',
-    loadChildren: () => import('./favourites/favourites.module').then( m => m.FavouritesPageModule)
-  },
 ];
 
 @NgModule({

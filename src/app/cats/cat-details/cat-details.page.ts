@@ -73,7 +73,7 @@ export class CatDetailsPage implements OnInit {
   editCat() {
     this.route.paramMap.subscribe(paramMap => {
       if (!paramMap.has('catId')) {
-        this.navCtrl.navigateBack('/cats');
+        this.navCtrl.navigateBack('/cats/tabs/your-cats');
         return;
       }
       this.catId = this.route.snapshot.params['catId']

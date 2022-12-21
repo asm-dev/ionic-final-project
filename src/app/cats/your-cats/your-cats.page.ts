@@ -1,4 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { IonItemSliding } from '@ionic/angular';
 
 import { Subscription } from 'rxjs';
 import { Cat } from 'src/app/shared/models/cat.model';
@@ -14,7 +16,10 @@ export class YourCatsPage implements OnInit, OnDestroy {
   private catsSub: Subscription;
   isLoading = false;
 
-  constructor(private catsService: CatsService) { }
+  constructor(
+    private catsService: CatsService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.catsSub = this.catsService.cats.subscribe(cats => {
@@ -33,6 +38,11 @@ export class YourCatsPage implements OnInit, OnDestroy {
     if (this.catsSub) {
       this.catsSub.unsubscribe();
     }
+  }
+
+  edit(catID:string, slidingItem: IonItemSliding){
+    slidingItem.close()
+    this.router.navigate(['/cats/tabs/your-cats/edit', catID])
   }
 
 }
