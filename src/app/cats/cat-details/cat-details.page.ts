@@ -4,6 +4,7 @@ import { AlertController, NavController } from '@ionic/angular';
 import { Cat } from 'src/app/shared/models/cat.model';
 import { CatsService } from '../cats.service';
 import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cat-details',
@@ -15,6 +16,9 @@ export class CatDetailsPage implements OnInit {
   catId: string;
   isLoading = false;
   private catSub: Subscription;
+  mapUrl: string;
+  lat: string | number;
+  lgn: string | number;
 
   constructor(
     private navCtrl: NavController,
@@ -23,24 +27,25 @@ export class CatDetailsPage implements OnInit {
     private alertCtrl: AlertController,
     private router: Router,
   ) { 
-    //this.cat = new Cat("", "", "", "", 0, 0, 0, false)
+    
+    //this.lat = String(40.3865266)
+    this.lat = String(this.getRandomLocation(-90,90))
+    //this.lgn = String(-3.7318372)
+    this.lgn = String(this.getRandomLocation(-180,180))
+    this.mapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${this.lat},${this.lgn}&zoom=14&size=500x300&maptype=roadmap &markers=color:black%7Clabel:Place%7C${this.lat},${this.lgn} &key=${environment.googleMapsAPIKey}`
   }
 
-  // ngOnInit() {
-  //   this.route.paramMap.subscribe(paramMap => {
-  //     if (!paramMap.has('catId')) {
-  //       this.navCtrl.navigateBack('/cats');
-  //       return;
-  //     }
-  //     this.cat = this.catsService.getCat(paramMap.get('catId'));
-  //   });
-  // }
+  getRandomLocation(min: number, max:number) {
+    let precision = Math.pow(10, 6);
+    let randomNumber = Math.random() * (max - min) + min;
+    return Math.floor(randomNumber * precision) / precision;
+  }
 
   ngOnInit() {
-    console.log("Hello error")
+    console.log(`Latitude:${this.lat}, longitude:${this.lgn}`)
     this.route.paramMap.subscribe(paramMap => {
       if (!paramMap.has('catId')) {
-        console.log("no cat id")
+
         this.navCtrl.navigateBack('/cats/tabs/all-cats');
         return;
       }

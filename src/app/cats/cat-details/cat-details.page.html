@@ -30,7 +30,13 @@
         <p><b>Affection level:</b> {{ cat.affectionLevel }}</p>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="cat.editable" class="ion-margin-bottom ion-padding-bottom">
+    <ion-row class="ion-margin-bottom">
+      <ion-col size-sm="6" offset-sm="3" class="ion-margin-bottom">
+        <p class="ion-padding-horizontal ion-margin-bottom ion-padding-bottom"><b>Location:</b></p>
+        <ion-img class="location-image" [src]="mapUrl"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="cat.editable" class="ion-margin ion-padding">
       <ion-col size-sm="6" offset-sm="3" class="ion-text-center ion-margin-bottom ion-padding-bottom">
         <ion-button color="warning" (click)="editCat()">
           Edit
