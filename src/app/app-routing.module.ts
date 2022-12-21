@@ -15,6 +15,11 @@ const routes: Routes = [
     path: 'cats',
     loadChildren: () => import('./cats/cats.module').then( m => m.CatsPageModule)
   },
+  {
+    path: '**',
+    loadChildren: () => import('./error/error.module').then( m => m.ErrorPageModule)
+  },
+
 ];
 
 @NgModule({
