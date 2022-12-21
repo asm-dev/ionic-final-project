@@ -172,17 +172,17 @@ export class CatsService {
   deleteCat(catId: string) {
     // console.log("I work" + catId)
     //   return this.http.delete(`https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats/${catId}.json`)
-    return this.http.delete(`https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats/${catId}.json`).subscribe(
-      (val) => {
-          console.log("DELETE call successful value returned in body", 
-                      val);
-      },
-      response => {
-          console.log("DELETE call in error", response);
-      },
-      () => {
-          console.log("The DELETE observable is now completed.");
-      })
-      
+    return this.http
+      .delete(
+        `https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats/${catId}.json`
+      )
+      .pipe(
+        switchMap(() => {
+          return this.cats;
+        }),
+        tap((cats) => {
+          this._cats.next(cats.filter((cat) => cat.id !== catId));
+        })
+      );
   }
 }

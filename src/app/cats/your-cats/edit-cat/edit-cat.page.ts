@@ -108,9 +108,9 @@ export class EditCatPage implements OnInit, OnDestroy {
       )
       .subscribe(() => {
         loadingEl.dismiss();
+        console.log('updated cat' + this.catId);
         this.editCatForm.reset();
-        
-        return this.router.navigate(['/cats/tabs/your-cats', this.catId ])
+        return this.router.navigate(['/cats/tabs/your-cats', this.catId])
       })
     })
   }
