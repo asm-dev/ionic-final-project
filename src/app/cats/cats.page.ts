@@ -1,7 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Cat } from '../shared/models/cat.model';
-import { CatsService } from './cats.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-cats',
@@ -11,15 +8,9 @@ import { Subscription } from 'rxjs';
 export class CatsPage implements OnInit {
   
   constructor() {
-   
   }
 
   ngOnInit() {
   }
 
-  miau():void {
-    let audio = new Audio('../../assets/audio/cat-meow.mp3')
-    audio.play()
-    console.log("meow")
-  }
 }

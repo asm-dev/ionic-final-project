@@ -90,6 +90,7 @@ export class EditCatPage implements OnInit, OnDestroy {
 
   editCat() {
     if(!this.editCatForm.valid){
+      console.log("not valid")
       return;
     }
     this.loadingCtrl.create({
@@ -109,8 +110,9 @@ export class EditCatPage implements OnInit, OnDestroy {
       .subscribe(() => {
         loadingEl.dismiss();
         console.log('updated cat' + this.catId);
-        this.editCatForm.reset();
-        return this.router.navigate(['/cats/tabs/your-cats', this.catId])
+        //this.editCatForm.reset();
+        this.router.navigateByUrl('/cats/tabs/your-cats/' + this.catId)
+        //this.router.navigate(['/','cats','tabs','your-cats', this.catId])
       })
     })
   }

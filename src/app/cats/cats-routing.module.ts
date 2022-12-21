@@ -49,18 +49,6 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path: 'new',
-    loadChildren: () => import('./your-cats/new-cat/new-cat.module').then( m => m.NewCatPageModule)
-  },
-  {
-    path: 'edit/:catId',
-    loadChildren: () => import('./your-cats/edit-cat/edit-cat.module').then( m => m.EditCatPageModule)
-  },
-  {
-    path: ':catId',
-    loadChildren: () => import('./cat-details/cat-details.module').then( m => m.CatDetailsPageModule)
-  },
 ];
 
 @NgModule({

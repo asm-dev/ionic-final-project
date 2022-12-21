@@ -23,7 +23,7 @@ export class CatDetailsPage implements OnInit {
     private alertCtrl: AlertController,
     private router: Router,
   ) { 
-    this.cat = new Cat("", "", "", "", 0, 0, 0, false)
+    //this.cat = new Cat("", "", "", "", 0, 0, 0, false)
   }
 
   // ngOnInit() {
@@ -37,9 +37,11 @@ export class CatDetailsPage implements OnInit {
   // }
 
   ngOnInit() {
+    console.log("Hello error")
     this.route.paramMap.subscribe(paramMap => {
       if (!paramMap.has('catId')) {
-        this.navCtrl.navigateBack('/cats');
+        console.log("no cat id")
+        this.navCtrl.navigateBack('/cats/tabs/all-cats');
         return;
       }
       this.isLoading = true;
@@ -51,6 +53,7 @@ export class CatDetailsPage implements OnInit {
             this.isLoading = false;
           },
           error => {
+           
             this.alertCtrl
               .create({
                 header: 'An error ocurred!',
@@ -59,7 +62,7 @@ export class CatDetailsPage implements OnInit {
                   {
                     text: 'Okay',
                     handler: () => {
-                      this.router.navigate(['/cats']);
+                      this.router.navigate(['/cats/tabs/all-cats']);
                     }
                   }
                 ]
