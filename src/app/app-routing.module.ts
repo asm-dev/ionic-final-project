@@ -16,9 +16,15 @@ const routes: Routes = [
     loadChildren: () => import('./cats/cats.module').then( m => m.CatsPageModule)
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./error/error.module').then( m => m.ErrorPageModule)
   },
+  
+
 
 ];
 
