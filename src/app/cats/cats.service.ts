@@ -3,6 +3,7 @@ import { Cat } from '../shared/models/cat.model';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { take, map, tap, switchMap } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 interface CatData {
   id: string;
@@ -13,6 +14,7 @@ interface CatData {
   dogFriendly: number;
   affectionLevel: number;
   editable: boolean;
+  userId: string;
 }
 
 @Injectable({
@@ -27,7 +29,8 @@ export class CatsService {
   }
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService,
   ) { }
 
   fetchCats() {
@@ -49,7 +52,8 @@ export class CatsService {
                   resData[key].vocalisation,
                   resData[key].dogFriendly,
                   resData[key].affectionLevel,
-                  resData[key].editable
+                  resData[key].editable,
+                  resData[key].userId,
                 )
               );
             }
@@ -78,7 +82,8 @@ export class CatsService {
             catData.vocalisation,
             catData.dogFriendly,
             catData.affectionLevel,
-            catData.editable
+            catData.editable,
+            catData.userId
           );
         })
       );
@@ -93,35 +98,50 @@ export class CatsService {
     affectionLevel: number
   ) {
     let generatedId: string;
-    const newCat = new Cat(
-      Math.random().toString(), //id
-      img,
-      breedName,
-      breedOrigin,
-      vocalisation,
-      dogFriendly,
-      affectionLevel,
-      true, //editable bool
-    );
-    return this.http
+    let fetchedUserId: string;
+    let newCat: Cat;
+
+    return this.authService.userId.pipe(
+      take(1),
+      switchMap(userId => {
+        fetchedUserId = userId;
+        return this.authService.token;
+      }),
+      take(1),
+      switchMap(token => {
+        if (!fetchedUserId) {
+          throw new Error('No user found!');
+        }
+        newCat = new Cat(
+          Math.random().toString(), //id
+          img,
+          breedName,
+          breedOrigin,
+          vocalisation,
+          dogFriendly,
+          affectionLevel,
+          true, //editable bool
+          fetchedUserId
+        ); 
+      return this.http
       .post<{ name: string }>(
-        'https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats.json',
+        `https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats.json?auth=${token}`,
         {
           ...newCat,
           id: null
         }
-      )
-      .pipe(
-        switchMap(resData => {
-          generatedId = resData.name;
-          return this.cats;
-        }),
-        take(1),
-        tap(cats => {
-          newCat.id = generatedId;
-          this._cats.next(cats.concat(newCat));
-        })
       );
+      }),
+      switchMap(resData => {
+        generatedId = resData.name;
+        return this.cats;
+      }),
+      take(1),
+      tap(cats => {
+        newCat.id = generatedId;
+        this._cats.next(cats.concat(newCat));
+      })
+    );
   }
 
   updateCat(
@@ -133,7 +153,6 @@ export class CatsService {
     dogFriendly: number,
     affectionLevel: number,
   ) {
-
     let updatedCats: Cat[];
     return this.cats.pipe(
       take(1),
@@ -157,6 +176,7 @@ export class CatsService {
           dogFriendly,
           affectionLevel,
           oldCat.editable,
+          oldCat.userId,
         );
         return this.http.put(
           `https://cat-shelter-ionic-default-rtdb.firebaseio.com/cats/${catId}.json`,

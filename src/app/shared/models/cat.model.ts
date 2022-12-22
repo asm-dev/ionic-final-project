@@ -7,6 +7,7 @@ export class Cat {
         public vocalisation: number,
         public dogFriendly: number,
         public affectionLevel: number,
-        public editable: boolean = true
+        public editable: boolean = true,
+        public userId: string,
     ){}
 }
