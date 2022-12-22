@@ -25,10 +25,14 @@ export class YourCatsPage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    //GET USER ID
-    console.log(this.userId)
-    this.catsSub = this.catsService.cats.subscribe(cats => {
-      this.yourCats = cats.filter(cat => { return cat['editable'] === true })
+    this.authService.userId.subscribe((userId) => {
+      this.userId = userId;
+      this.catsSub = this.catsService.cats.subscribe(cats => {
+        this.yourCats = cats.filter(cat => { return cat['userId'] === userId })
+    });
+    
+    // this.catsSub = this.catsService.cats.subscribe(cats => {
+    //   this.yourCats = cats.filter(cat => { return cat['editable'] === true })
       //return if cat.userId === UserID
     });
   }

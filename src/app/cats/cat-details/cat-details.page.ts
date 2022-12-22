@@ -5,6 +5,7 @@ import { Cat } from 'src/app/shared/models/cat.model';
 import { CatsService } from '../cats.service';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-cat-details',
@@ -16,7 +17,7 @@ export class CatDetailsPage implements OnInit {
   catId: string;
   isLoading = false;
   private catSub: Subscription;
-  // private potatoSub: Subscription;
+  userId: string;
   mapUrl: string;
   lat: string | number;
   lgn: string | number;
@@ -27,6 +28,7 @@ export class CatDetailsPage implements OnInit {
     private catsService: CatsService,
     private alertCtrl: AlertController,
     private router: Router,
+    private authService: AuthService,
   ) { 
     
     //this.lat = String(40.3865266)
@@ -43,6 +45,9 @@ export class CatDetailsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.userId.subscribe((userId) => {
+      this.userId = userId;
+    })
     console.log(`Latitude:${this.lat}, longitude:${this.lgn}`)
     this.route.paramMap.subscribe(paramMap => {
       if (!paramMap.has('catId')) {

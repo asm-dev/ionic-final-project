@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthPage implements OnInit {
   isLoading = false;
-  isLogin = true;
+  isLogin = false;
 
   constructor(
     private authService: AuthService,

@@ -36,7 +36,7 @@
         <ion-img class="location-image" [src]="mapUrl"></ion-img>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="cat.editable" class="ion-margin ion-padding">
+    <ion-row *ngIf="this.userId === cat.userId" class="ion-margin ion-padding">
       <ion-col size-sm="6" offset-sm="3"size-xl="4.5" offset-xl="3.75"  class="ion-text-center ion-margin-bottom ion-padding-bottom">
         <ion-button color="warning" (click)="editCat()">
           Edit
