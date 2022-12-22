@@ -16,6 +16,7 @@ export class CatDetailsPage implements OnInit {
   catId: string;
   isLoading = false;
   private catSub: Subscription;
+  // private potatoSub: Subscription;
   mapUrl: string;
   lat: string | number;
   lgn: string | number;
@@ -79,7 +80,7 @@ export class CatDetailsPage implements OnInit {
   }
 
   editCat() {
-    this.route.paramMap.subscribe(paramMap => {
+    this.catSub = this.route.paramMap.subscribe(paramMap => {
       if (!paramMap.has('catId')) {
         this.navCtrl.navigateBack('/cats/tabs/your-cats');
         return;
@@ -100,6 +101,10 @@ export class CatDetailsPage implements OnInit {
       console.log('Deleted cat' + this.catId);
       this.router.navigate(['/cats/tabs/your-cats']);
     });
+  }
+
+  ionViewWillLeave(){
+    this.catSub.unsubscribe();
   }
 
 }
