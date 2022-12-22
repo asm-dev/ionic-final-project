@@ -2,7 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonItemSliding } from '@ionic/angular';
 
-import { Subscription } from 'rxjs';
+import { Subscription, switchMap, take } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Cat } from 'src/app/shared/models/cat.model';
 import { CatsService } from '../cats.service';
 
@@ -15,15 +16,20 @@ export class YourCatsPage implements OnInit, OnDestroy {
   yourCats: Cat[];
   private catsSub: Subscription;
   isLoading = false;
+  userId: string;
 
   constructor(
     private catsService: CatsService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
+    //GET USER ID
+    console.log(this.userId)
     this.catsSub = this.catsService.cats.subscribe(cats => {
       this.yourCats = cats.filter(cat => { return cat['editable'] === true })
+      //return if cat.userId === UserID
     });
   }
 
