@@ -14,3 +14,18 @@ ion-grid {
     width: 30px;
 }
 
+.logo-col{
+    justify-content: flex-end;
+    display: flex;
+    padding-right: 20px;
+}
+
+p {
+    text-align: left;
+}
+
+@media only screen and (min-width: 600px) { 
+    p {
+      text-align: center 
+    }
+}

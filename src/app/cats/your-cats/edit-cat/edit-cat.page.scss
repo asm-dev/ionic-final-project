@@ -1,0 +1,15 @@
+p {
+    color: var(--ion-color-danger)
+}
+
+ion-content {
+    --background: url('../../../../assets/images/edit-cat.jpg') no-repeat center center / cover;
+}
+
+ion-grid {
+    background-color: rgba(255, 255, 255, 0.473);   
+}
+
+.item::part(native){
+    background:none;
+}

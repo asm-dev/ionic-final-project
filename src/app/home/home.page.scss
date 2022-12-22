@@ -4,6 +4,10 @@
     animation-name: spacing;
     animation-duration: 6s;
     animation-iteration-count: infinite;
+    background-color: #E7BC52;
+    padding: 0 20px;
+    border-radius: 4px;
+    color: white;
   }
   
   @keyframes spacing {
@@ -22,4 +26,25 @@
 
 .toolbar-logo {
     width: 30px;
+}
+
+.logo-col{
+  justify-content: flex-end;
+  display: flex;
+  padding-right: 20px;
+}
+
+@media only screen and (min-width: 600px) {
+  .intro-cat-img {
+    margin-top: 36px;
+  }
+
+  .intro-cat-img::part(image) {
+    border-radius: 4px;
+  }
+
+  p {
+    padding-right: 0;
+    padding-left: 0; 
+  }
 }

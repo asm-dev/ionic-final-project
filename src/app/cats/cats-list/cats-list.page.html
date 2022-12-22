@@ -19,7 +19,7 @@
 
   <ion-grid *ngIf="!isLoading && loadedCats.length > 0">
     <ion-row>
-      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+      <ion-col size="12" size-sm="8" offset-sm="2" size-xl="4.5" offset-xl="3.75" class="ion-text-center">
         <ion-card>
           <ion-img [src]="loadedCats[0].img"></ion-img>
           <ion-card-content>
@@ -28,10 +28,10 @@
           </ion-card-content>
           <div>
             <ion-button
-              fill="clear"
+              fill="outline"
               color="tertiary"
-              
-              [routerLink]="['/', 'cats', 'tabs', 'all-cats', loadedCats[0].id]">
+              [routerLink]="['/', 'cats', 'tabs', 'all-cats', loadedCats[0].id]"
+              class="ion-margin-bottom">
               View details
             </ion-button>
           </div>
@@ -39,7 +39,7 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+      <ion-col size="12" size-sm="8" offset-sm="2" size-xl="4.5" offset-xl="3.75" class="ion-text-center">
         <ion-list>
           <ion-item
             *ngFor="let cat of loadedCats.slice(1)"

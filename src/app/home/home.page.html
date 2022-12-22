@@ -10,8 +10,8 @@
               Cat Shelter
             </ion-title>
           </ion-col>
-          <ion-col size="2">
-            <a href="/cats/tabs/all-cats"><ion-img class="toolbar-logo" src="../../assets/images/cat-shelter-logo.png"></ion-img></a>
+          <ion-col size="2" class="logo-col">
+            <a href="/cats/tabs/all-cats"><ion-img class="toolbar-logo" src="../../assets/images/cat-shelter-logo-white.png"></ion-img></a>
           </ion-col>
         </ion-row>
 
@@ -21,21 +21,21 @@
 <ion-content>
   <ion-grid class="ion-text-center ion-no-padding ion-no-margin">
     <ion-row>
-      <ion-col size="12" size-sm="8" offset-sm="2">
-        <ion-img src="../../assets/images/intro-cat.jpg" class="ion-no-padding ion-no-margin" alt="Cat on yellow background"></ion-img>
+      <ion-col size="12" size-sm="8" offset-sm="2" size-xl="4.5" offset-xl="3.75">
+        <ion-img src="../../assets/images/intro-cat.jpg" class="intro-cat-img ion-no-padding ion-no-margin" alt="Cat on yellow background"></ion-img>
         <h1 class="ion-padding">Not a cat without a home</h1>
-        <p class="hero-meow" (click)="miau()">MEOW!</p>
+        <span class="hero-meow" (click)="miau()">MEOW!</span>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-left">
+      <ion-col size="12" size-sm="8" offset-sm="2" size-xl="4.5" offset-xl="3.75" class="ion-text-left">
         
-        <p class="ion-padding-bottom ion-padding-horizontal">Our shelter has given to many cats a warm, safe and loving place to play, meow and grow. Our mission is to make sure that every cat has a home, and we can't wait to welcome you on board.</p>
+        <p class="ion-padding">Our shelter has given to many cats a warm, safe and loving place to play, meow and grow. Our mission is to make sure that every cat has a home, and we can't wait to welcome you on board.</p>
         <p class="ion-padding-horizontal">If you're thinking of adopting a cat please feel free to take at our lovable cats, and if you know a cat looking for a home, please feel free to add it to our shelter so we can make sure we find them a home soon.</p>
       </ion-col>
     </ion-row>
     <ion-row class="ion-margin ion-padding">
-      <ion-col class="ion-margin-vertical">
+      <ion-col class="ion-margin-bottom">
         <ion-button fill="solid" color="secondary" routerLink="/cats/tabs/all-cats">
           <ion-icon slot="start" name="paw-outline"></ion-icon>
           Discover cats
@@ -43,6 +43,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  
-  
 </ion-content>

@@ -24,7 +24,7 @@
 
   <ion-grid *ngIf="!isLoading && yourCats.length === 0">
     <ion-row class="ion-padding ion-justify-content-center">
-      <ion-col size="12" size-sm="8" offset-sm="2">
+      <ion-col size="12" size-sm="8" offset-sm="2" size-xl="4.5" offset-xl="3.75">
         <p>Oops, you haven't added any cat yet</p>
       </ion-col>
       <ion-button fill="solid" shape="round" color="secondary" routerLink="/cats/tabs/your-cats/create" class="ion-margin-vertical">
@@ -36,7 +36,7 @@
 
   <ion-grid *ngIf="!isLoading && yourCats.length > 0">
     <ion-row>
-      <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+      <ion-col size="12" size-sm="8" offset-sm="2" size-xl="4.5" offset-xl="3.75" class="ion-text-center">
         <ion-list>
           <ion-item-sliding *ngFor="let cat of yourCats" #slidingItem>
             <ion-item 
@@ -51,7 +51,7 @@
             </ion-item>
             <ion-item-options side="end"> 
               <!-- side end is default -->
-              <ion-item-option color="none" (click)="edit(cat.id, slidingItem)"> 
+              <ion-item-option color="secondary" (click)="edit(cat.id, slidingItem)"> 
                 <ion-icon name="create-outline" slot="icon-only"></ion-icon>
               </ion-item-option>
             </ion-item-options>
