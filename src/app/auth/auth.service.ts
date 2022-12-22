@@ -144,7 +144,7 @@ export class AuthService implements OnDestroy {
 
   private setUserData(userData: AuthResponseData) {
     const expirationTime = new Date(
-      new Date().getTime() + +userData.expiresIn * 1000
+      new Date().getTime() + +userData.expiresIn * 10000
     );
     const user = new User(
       userData.localId,
