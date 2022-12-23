@@ -200,6 +200,7 @@ export class CatsService {
         switchMap(() => {
           return this.cats;
         }),
+        take(1),
         tap((cats) => {
           this._cats.next(cats.filter((cat) => cat.id !== catId));
         })
