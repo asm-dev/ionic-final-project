@@ -29,11 +29,7 @@ export class YourCatsPage implements OnInit, OnDestroy {
       this.userId = userId;
       this.catsSub = this.catsService.cats.subscribe(cats => {
         this.yourCats = cats.filter(cat => { return cat['userId'] === userId })
-    });
-    
-    // this.catsSub = this.catsService.cats.subscribe(cats => {
-    //   this.yourCats = cats.filter(cat => { return cat['editable'] === true })
-      //return if cat.userId === UserID
+      });
     });
   }
 
@@ -41,7 +37,7 @@ export class YourCatsPage implements OnInit, OnDestroy {
     this.isLoading = true;
     this.catsService.fetchCats().subscribe(() => {
       this.isLoading = false;
-    });
+    }); 
   }
 
   ngOnDestroy() {
