@@ -35,9 +35,14 @@ export class YourCatsPage implements OnInit, OnDestroy {
 
   ionViewWillEnter() {
     this.isLoading = true;
-    this.catsService.fetchCats().subscribe(() => {
+
+    this.catsService.fetchCats().subscribe((cats) => {
+      this.yourCats = cats.filter((cat) => {
+        return cat['userId'] === this.userId;
+      });
+      console.log(this.userId);
       this.isLoading = false;
-    }); 
+    });
   }
 
   ngOnDestroy() {

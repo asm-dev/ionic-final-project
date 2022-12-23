@@ -15,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'cats',
-    loadChildren: () => import('./cats/cats.module').then( m => m.CatsPageModule)
+    loadChildren: () => import('./cats/cats.module').then( m => m.CatsPageModule),
+    canLoad: [AuthGuard],
   },
   {
     path: 'auth',
