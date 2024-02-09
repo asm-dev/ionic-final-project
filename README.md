@@ -2,7 +2,9 @@
 
 This is a SPA build for a fictional cat shelter using [Angular CLI](https://github.com/angular/angular-cli), [Ionic](https://ionicframework.com/) and [Firebase](https://firebase.google.com/). The page offers the user the opportunity to browse, add, delete and update cats from a made-up shelter database of homeless cats.
 
-**Warning!** As of 09/02/24 the deployed page won't let users perform any HTTP requests, and therefore won't be able to properly access the main page functionalities (you'd still be able to auth and view the homepage, though). The reason behind this decision is that I have tweaked Firebase's rules so the database can't be accessed due to some security reasons related to Google API keys. However, the demo video could still show you the main page's functionality. Nonetheless, please do not hesitate to drop me a message if you're keen to check it out live so I activate the DB for you - it's still possible, and the page is completely secured for users to use.
+<code>Warning!</code>
+
+As of 09/02/24 the deployed page won't let users perform any HTTP requests, and therefore won't be able to properly access the main page functionalities (you'd still be able to auth and view the homepage, though). The reason behind this decision is that I have tweaked Firebase's rules so the database can't be accessed due to some security reasons related to Google API keys. However, the demo video could still show you the main page's functionality. Nonetheless, please do not hesitate to drop me a message if you're keen to check it out live so I activate the DB for you - it's still possible, and the page is completely secured for users to use.
 
 <br>
 <p align="center">
