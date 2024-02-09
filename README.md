@@ -11,6 +11,8 @@ As of 09/02/24 the deployed page won't let users perform any HTTP requests, and 
   <img src="/src/assets/images/cat-shelter-logo.png" style="width:150px;"/>
 </p>
 <p align="center">
+<a href="https://www.youtube.com/watch?v=Jwn_5P8g9Vk&t=9s">Demo video</a>
+|
 <a href="https://trello.com/b/eRTb7466/ionic-project">Trello board</a>
 |
 <a href="https://docs.google.com/presentation/d/1cdWIT_RsuIMqxIgxhD6Xyk1BGv26i3Lt9HPK-9Ys9jM/edit?usp=sharing">Presentation</a>
@@ -25,7 +27,6 @@ As of 09/02/24 the deployed page won't let users perform any HTTP requests, and 
 - [Technologies Used](#technologies-used)
 - [Components and Pages Structure](#components-and-pages-structure)
 - [Main Functionalities and Characteristics](#main-functionalities-and-characteristics)
-- [Demo](#demo)
 - [Future Work](#future-work)
 - [Resources](#resources)
 - [Team Members](#team-members)
@@ -102,10 +103,6 @@ The main folder you should take a look at to understand how the app is structure
 - Ease of navigation. Refined routing with greatly connected components. Available menu and tabs to navigate between pages.
 - Responsive layout. Consistent and pleasant UI that follows a mobile first approach, pages feel like parts of a whole.
 - Enhanced experience. Filtration, Authentication with Firebase, Google Maps integration and web app deployment using Firebase Hosting.
-
-## Demo
-
-[Demo video](https://www.youtube.com/watch?v=Jwn_5P8g9Vk&t=9s)
 
 ## Future Work
 
