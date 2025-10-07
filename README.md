@@ -2,11 +2,17 @@
 
 This is a SPA build for a fictional cat shelter using [Angular CLI](https://github.com/angular/angular-cli), [Ionic](https://ionicframework.com/) and [Firebase](https://firebase.google.com/). The page offers the user the opportunity to browse, add, delete and update cats from a made-up shelter database of homeless cats.
 
+<code>Warning!</code>
+
+As of 09/02/24 the deployed page won't let users perform any HTTP requests, and therefore won't be able to properly access the main page functionalities (you'd still be able to auth and view the homepage, though). The reason behind this decision is that I have tweaked Firebase's rules so the database can't be accessed due to some security reasons related to Google API keys. However, the demo video could still show you the main page's functionality. Nonetheless, please do not hesitate to drop me a message if you're keen to check it out live so I activate the DB for you - it's still possible, and the page is completely secured for users to use.
+
 <br>
 <p align="center">
   <img src="/src/assets/images/cat-shelter-logo.png" style="width:150px;"/>
 </p>
 <p align="center">
+<a href="https://www.youtube.com/watch?v=Jwn_5P8g9Vk&t=9s">Demo video</a>
+|
 <a href="https://trello.com/b/eRTb7466/ionic-project">Trello board</a>
 |
 <a href="https://docs.google.com/presentation/d/1cdWIT_RsuIMqxIgxhD6Xyk1BGv26i3Lt9HPK-9Ys9jM/edit?usp=sharing">Presentation</a>
@@ -21,7 +27,6 @@ This is a SPA build for a fictional cat shelter using [Angular CLI](https://gith
 - [Technologies Used](#technologies-used)
 - [Components and Pages Structure](#components-and-pages-structure)
 - [Main Functionalities and Characteristics](#main-functionalities-and-characteristics)
-- [Demo](#demo)
 - [Future Work](#future-work)
 - [Resources](#resources)
 - [Team Members](#team-members)
@@ -98,10 +103,6 @@ The main folder you should take a look at to understand how the app is structure
 - Ease of navigation. Refined routing with greatly connected components. Available menu and tabs to navigate between pages.
 - Responsive layout. Consistent and pleasant UI that follows a mobile first approach, pages feel like parts of a whole.
 - Enhanced experience. Filtration, Authentication with Firebase, Google Maps integration and web app deployment using Firebase Hosting.
-
-## Demo
-
-[Demo video](https://www.youtube.com/watch?v=Jwn_5P8g9Vk&t=9s)
 
 ## Future Work
 
